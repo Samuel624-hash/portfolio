@@ -1,0 +1,212 @@
+/* Base */
+:root {
+    --bg-1: linear-gradient(135deg, #4a90e2, #9013fe);
+    --card: #ffffff;
+    --muted: #f0f0f0;
+    --primary: #29b6f6;
+    --op: #ffb74d;
+    --clear: #ef5350;
+    --text: #222;
+    --radius: 14px;
+    --gap: 12px;
+}
+
+/* Main body */
+*{box-sizing: border-box;}
+html,body,#display{font-family: Inter, Poppins, system-ui, Arial, sans-serif;}
+
+body {
+    background: var(--bg-1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 28px;
+}
+
+/* Page Layout to keep center on tall screens */
+.page{
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+/* Calculator container */
+.calculator {
+    background: var(--card);
+    padding: 22px;
+    width: 100%;
+    border-radius: calc(var(--radius) + 6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+    transition: transform .18s ease;
+}
+
+/*Display*/
+.display {
+    min-height: 130px;
+    flex-direction: column;
+    padding: 12px 16px;
+    background: var(--muted);
+    border-radius: 12px;
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.expression {
+    font-size: 32px;
+    color: #666;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.result {
+    font-size: 57px;
+    font-weight: bold;
+    color: #000;
+    text-align: right;
+}
+/*Buttons grid*/
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+}
+
+/* Buttons Style */
+.btn {
+    height: 64px;
+    font-size: 22px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+    background: #4CAF50;
+    color: white;
+    -webkit-tab-highlight-color: transparent;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+/* Button hover + Animation*/
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+/* Operator */
+.op {
+    background: var(--op);
+    color: white;
+}
+
+.operator:hover {
+    background: #ffa726;
+}
+
+/* Equal Button */
+.equal {
+    background: var(--primary);
+    color: #fff;
+}
+
+.equal:hover {
+    background: #03a9f4;
+}
+
+/* Clear Button */
+.clear {
+    background: var(--clear);
+    color: #fff;
+}
+
+.clear:hover {
+    background: #e53935;
+}
+
+/* Scientific */
+.sci {
+    background: #7e57c2;
+    color: white;
+    font-size: 16px;
+}
+
+.sci:hover {
+    background: #673ab7;
+}
+
+.key {
+    background: #7e57c2;
+    color: white;
+    font-size: 16px;
+}
+
+.key:hover {
+    background: #673ab7;
+}
+
+button.pressed {
+    transform: 0.95;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.history {
+    margin-top: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.history h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+}
+
+.history ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.history li {
+    font-size: 14px;
+    padding: 4px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Make the zero a regular button but wide on very narrow button */
+@media (max-width:420px){
+    .display{ height: 64px; font-size: 32px; margin-bottom: 14px }
+    .btn{ height: 60px; font-size: 19px; border-radius: 10px }
+    .clear{ height: 56px }
+    .calculator{ padding: 16px }
+}
+
+/* Mobile adjustment: Larger touch target on smaLL screen */
+@media (max-width:360px){
+    .display{ height: 60px; font-size: 28px }
+    .btn{ height: 68px; font-size: 20px }
+    .buttons{ gap: 10px}
+}
+
+/* Landscale: Slightly larger card */
+@media (min-width:768px){
+    .calculator{ max-width: 420px }
+}
+
+/* Accessibility */
+.btn:focus{ outline: 3px rgba(0, 0, 0, 0.08); outline-offset: 2px }
